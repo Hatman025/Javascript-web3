@@ -1,0 +1,54 @@
+Build a Table Exercise
+
+HTML
+<table>
+  <tr>
+    <th>name</th>
+    <th>height</th>
+    <th>place</th>
+  </tr>
+  <tr>
+    <td>Kilimanjaro</td>
+    <td>5895</td>
+    <td>Tanzania</td>
+  </tr>
+</table>
+
+
+Code
+function generateTable(data) {
+    const container = document.getElementById("mountains");
+
+  ------- Create the table element
+    const table = document.createElement("table");
+
+    if (data.length > 0) {
+        const columns = Object.keys(data[0]);
+        const headerRow = document.createElement("tr");
+        columns.forEach((column) => {
+            const th = document.createElement("th");
+            th.textContent = column;
+            headerRow.appendChild(th);
+        });
+        table.appendChild(headerRow);
+        data.forEach((object) => {
+            const row = document.createElement("tr");
+            columns.forEach((column) => {
+                const td = document.createElement("td");
+                td.textContent = object[column];
+
+                if (!isNaN(parseFloat(object[column]))) {
+                    td.style.textAlign = "right";
+                }
+
+                row.appendChild(td);
+            });
+            table.appendChild(row);
+        });
+    }
+-------Append the table to the container
+    container.appendChild(table);
+}
+
+------Generate the table
+generateTable(mountains);
