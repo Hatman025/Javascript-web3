@@ -1,0 +1,26 @@
+Quite Times exercise
+async function activityTable(day) {
+    
+    const logFiles = await textFile("camera_logs.txt");
+    const fileNames = logFiles.split("\n").filter(name => name != "");
+
+    ------Initialize an array for activity of each hour
+    const activityCounts = new Array(24).fill(0);
+
+    ------for each log file
+    for (const fileName of fileNames) {
+        const logContent = await textFile(fileName);
+        const timestamps = logContent.split("\n").filter(timestamp => timestamp != "");
+
+    -------for timestamp
+        timestamps.forEach(timestamp => {const date = new Date(Number(timestamp));
+            if (date.getDay() == day) {
+                const hour = date.getHours();
+                activityCounts[hour]++;}
+        });
+    }
+
+    return activityCounts;
+}
+
+
