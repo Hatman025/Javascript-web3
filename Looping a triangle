@@ -1,0 +1,4 @@
+Looping a triangle
+for (let triangle = "#"; 
+    triangle.length < 8; line += "#")
+    console.log(line);
